@@ -1,0 +1,305 @@
+/* Page wrapper */
+.login-page {
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Use custom class instead of .container to avoid Bootstrap/global conflicts */
+.login-page .auth-container {
+  position: relative;
+  width: 900px;
+  max-width: 100%;
+  min-height: 620px;
+  max-height: 92vh;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+              0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* Typography */
+.login-page h1 {
+  font-weight: 700;
+  margin: 0 0 12px;
+  color: #222;
+}
+
+.login-page p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  margin: 12px 0 20px;
+}
+
+.login-page span {
+  font-size: 12px;
+}
+
+/* Form areas */
+.login-page .form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: all 0.6s ease-in-out;
+  overflow: hidden;
+}
+
+.login-page .sign-in-container {
+  left: 0;
+  z-index: 2;
+}
+
+.login-page .sign-up-container {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* IMPORTANT:
+   sign-up form must not be vertically centered because it has many fields */
+.login-page .auth-form {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Login form can stay centered */
+.login-page .login-form {
+  justify-content: center;
+  padding: 0 50px;
+}
+
+/* Register form should start from top and scroll if needed */
+.login-page .register-form {
+  justify-content: flex-start;
+  padding: 28px 40px 20px;
+  overflow-y: auto;
+}
+
+.login-page .register-form::-webkit-scrollbar {
+  width: 6px;
+}
+
+.login-page .register-form::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 10px;
+}
+
+.login-page input {
+  background-color: #eeeeee;
+  border: none;
+  outline: none;
+  padding: 12px 15px;
+  margin: 6px 0;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 14px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.login-page .form-note {
+  display: block;
+  font-size: 12px;
+  color: #666666;
+  margin: 8px 0 10px;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.login-page button {
+  border-radius: 20px;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.login-page button:active {
+  transform: scale(0.95);
+}
+
+.login-page button:focus {
+  outline: none;
+}
+
+.login-page button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-page button.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.login-page .text-link {
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 8px 0;
+}
+
+.login-page .text-link:hover {
+  text-decoration: underline;
+}
+
+/* Animation states */
+.login-page .auth-container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.login-page .auth-container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* Overlay */
+.login-page .overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.login-page .auth-container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.login-page .overlay {
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.login-page .auth-container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.login-page .overlay-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 40px;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.login-page .overlay-panel h1,
+.login-page .overlay-panel p {
+  color: #ffffff;
+}
+
+.login-page .overlay-left {
+  transform: translateX(-20%);
+}
+
+.login-page .auth-container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.login-page .overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.login-page .auth-container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+/* Optional alert styles if you still use them anywhere */
+.login-page .alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.login-page .alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.login-page .alert-success {
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.login-page .alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
